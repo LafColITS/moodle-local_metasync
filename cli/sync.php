@@ -39,8 +39,7 @@ if ($unrecognized) {
 }
 
 if ($options['help']) {
-    $help =
-        "Execute initial meta-course group synchronization.
+    $help = "Execute initial meta-course group synchronization.
 
 Options:
 -v, --verbose         Print verbose progess information

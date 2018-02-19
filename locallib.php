@@ -52,7 +52,13 @@ function local_metasync_parent_courses($courseid = null) {
 function local_metasync_child_courses($courseid) {
     global $DB;
 
-    return $DB->get_records_menu('enrol', array('enrol' => 'meta', 'courseid' => $courseid, 'status' => ENROL_INSTANCE_ENABLED), 'sortorder', 'id, customint1');
+    $conditions = array(
+        'enrol' => 'meta',
+        'courseid' => $courseid,
+        'status' => ENROL_INSTANCE_ENABLED
+    );
+
+    return $DB->get_records_menu('enrol', $conditions, 'sortorder', 'id, customint1');
 }
 
 /**
@@ -95,7 +101,12 @@ function local_metasync_sync(progress_trace $trace) {
             }
             // We may need to remove suspended users from child course groups, but only if added by local_metasync.
             foreach ($suspendedusers as $user) {
-                if ($metamember = $DB->get_record('groups_members', array('groupid' => $metagroup->id, 'userid' => $user->id, 'component' => 'local_metasync'))) {
+                $conditions = array(
+                    'groupid' => $metagroup->id,
+                    'userid' => $user->id,
+                    'component' => 'local_metasync'
+                );
+                if ($metamember = $DB->get_record('groups_members', $conditions)) {
                     groups_remove_member($metagroup, $user->id);
                 }
             }

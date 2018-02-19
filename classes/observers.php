@@ -44,11 +44,9 @@ class observers {
         }
 
         if ($event->other['enrol'] === 'meta') {
-            /**
-             * When adding a metalink, there's no event for that. All you see is each metaenrolment. 
-             * When we see one, check to see if we have a group already made for that linked course.
-             * If we don't have one, loop through and make them.
-             */
+            // When adding a metalink, there's no event for that. All you see is each metaenrolment.
+            // When we see one, check to see if we have a group already made for that linked course.
+            // If we don't have one, loop through and make them.
             $children = local_metasync_child_courses($event->courseid);
             foreach ($children as $childid) {
                 $child = get_course($childid);
@@ -64,8 +62,8 @@ class observers {
                 $coursecontext = \context_course::instance($child->id);
                 $user = \core_user::get_user($event->relateduserid);
                 if (\is_enrolled($coursecontext, $user, '', true)) {
-                   $newgroup = $DB->get_record('groups', array('courseid' => $event->courseid, 'idnumber' => $child->id));
-                   \groups_add_member($newgroup, $event->relateduserid, 'local_metasync', $child->id);
+                     $newgroup = $DB->get_record('groups', array('courseid' => $event->courseid, 'idnumber' => $child->id));
+                     \groups_add_member($newgroup, $event->relateduserid, 'local_metasync', $child->id);
                 }
             }
             return true;
@@ -140,11 +138,11 @@ class observers {
         foreach ($parentcourseids as $courseid) {
             $coursecontext = \context_course::instance($event->courseid);
             if (\is_enrolled($coursecontext, $user, '', true)) {
-               $newgroup = $DB->get_record('groups', array('courseid' => $courseid, 'idnumber' => $event->courseid));
-               \groups_add_member($newgroup, $event->relateduserid, 'local_metasync', $courseid);
+                 $newgroup = $DB->get_record('groups', array('courseid' => $courseid, 'idnumber' => $event->courseid));
+                 \groups_add_member($newgroup, $event->relateduserid, 'local_metasync', $courseid);
             } else {
-               $newgroup = $DB->get_record('groups', array('courseid' => $courseid, 'idnumber' => $event->courseid));
-               \groups_remove_member($newgroup, $event->relateduserid);
+                 $newgroup = $DB->get_record('groups', array('courseid' => $courseid, 'idnumber' => $event->courseid));
+                 \groups_remove_member($newgroup, $event->relateduserid);
             }
         }
     }
