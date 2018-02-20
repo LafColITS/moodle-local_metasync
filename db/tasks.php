@@ -15,19 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    local_metasync
- * @copyright  2014 Willy Lee (wlee@carleton.edu)
- * @copyright  2014 Paul Holden (pholden@greenhead.ac.uk)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   local_metasync
+ * @category  task
+ * @copyright 2018 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define('CLI_SCRIPT', true);
+defined('MOODLE_INTERNAL') || die();
 
-require_once(__DIR__ . '/../../../config.php');
-require_once($CFG->libdir . '/clilib.php');
-
-// Ensure errors are well explained.
-set_debugging(DEBUG_DEVELOPER, true);
-
-cli_error('[LOCAL METASYNC] The sync script has been deprecated. Please use the scheduled task instead.');
-exit(0);
+$tasks = array(
+    array(
+        'classname' => 'local_metasync\task\sync_task',
+        'blocking' => 0,
+        'minute' => '0',
+        'hour' => '0',
+        'day' => '*',
+        'month' => '*',
+        'dayofweek' => '*',
+        'disabled' => 1
+    )
+);

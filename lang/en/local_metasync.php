@@ -24,3 +24,4 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Meta-course synchronization to groups';
+$string['synctask'] = 'Resynchronize meta course groups';

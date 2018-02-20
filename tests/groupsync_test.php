@@ -36,10 +36,7 @@ class local_metasync_groupsync_testcase extends advanced_testcase {
         $this->resetAfterTest(true);
 
         // Enable meta enrollments.
-        $enabled = enrol_get_plugins(true);
-        $enabled['meta'] = true;
-        $enabled = array_keys($enabled);
-        set_config('enrol_plugins_enabled', implode(',', $enabled));
+        $this->enable_enrol_meta();
 
         // First scenario: two child courses and a parent course.
         $child1 = $this->getDataGenerator()->create_course(array('shortname' => 'Child1'));
@@ -93,7 +90,24 @@ class local_metasync_groupsync_testcase extends advanced_testcase {
         // Test enrollment in new course.
         $manual->enrol_user($manual2, $users['user1']->id);
         enrol_meta_sync($parent->id);
-        $parentgroup1id = groups_get_group_by_name($parent->id, 'Child2');
-        $this->assertEquals(7, count(groups_get_members($parentgroup1id)));
+        $parentgroup2id = groups_get_group_by_name($parent->id, 'Child2');
+        $this->assertEquals(7, count(groups_get_members($parentgroup2id)));
+
+        // Manually remove a user; won't be repaired automatically.
+        groups_remove_member($parentgroup2id, $users['user1']->id);
+        enrol_meta_sync($parent->id);
+        $this->assertEquals(6, count(groups_get_members($parentgroup2id)));
+
+        // Use sync task to fix.
+        $trace = new text_progress_trace();
+        local_metasync_sync($trace);
+        $this->assertEquals(7, count(groups_get_members($parentgroup2id)));
+    }
+
+    protected function enable_enrol_meta() {
+        $enabled = enrol_get_plugins(true);
+        $enabled['meta'] = true;
+        $enabled = array_keys($enabled);
+        set_config('enrol_plugins_enabled', implode(',', $enabled));
     }
 }

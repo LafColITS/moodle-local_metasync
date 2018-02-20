@@ -112,6 +112,7 @@ function local_metasync_sync(progress_trace $trace) {
             }
         }
     }
+    $trace->finished();
 }
 
 /**
