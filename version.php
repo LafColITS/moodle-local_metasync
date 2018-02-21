@@ -24,9 +24,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_metasync';
-$plugin->release   = '1.0';
-$plugin->version   = 2014100800;
-$plugin->requires  = 2013111800; // Moodle 2.6 onwards.
+$plugin->release   = 'v3.1.0';
+$plugin->version   = 2014100801;
+$plugin->requires  = 2016052300; // Moodle 3.1 onwards.
 $plugin->maturity  = MATURITY_STABLE;
-
-$plugin->dependencies = array('enrol_meta' => 2013110500);
