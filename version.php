@@ -26,5 +26,5 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->component = 'local_metasync';
 $plugin->release   = 'v3.2.0';
 $plugin->version   = 2018022100;
-$plugin->requires  = 2016120500; // Moodle 3.2 onwards.
+$plugin->requires  = 2017051500; // Moodle 3.3 onwards.
 $plugin->maturity  = MATURITY_STABLE;

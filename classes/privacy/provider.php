@@ -15,14 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    local_metasync
- * @copyright  2014 Willy Lee (wlee@carleton.edu)
- * @copyright  2014 Paul Holden (pholden@greenhead.ac.uk)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Privacy implementation for local_metasync.
+ *
+ * @package   local_course_merge
+ * @copyright 2018 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+namespace local_metasync\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Meta-course synchronization to groups';
-$string['privacy:metadata'] = 'The Meta-course synchronization to groups plugin does not store any personal data.';
-$string['synctask'] = 'Resynchronize meta course groups';
+class provider implements
+    // This plugin does not store any personal user data.
+    \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() {
+        return 'privacy:metadata';
+    }
+}
