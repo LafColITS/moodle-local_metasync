@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Event observers for local_metasync.
+ *
  * @package    local_metasync
  * @copyright  2014 Willy Lee (wlee@carleton.edu)
  * @copyright  2014 Paul Holden (pholden@greenhead.ac.uk)
@@ -27,6 +29,14 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/local/metasync/locallib.php');
 
+/**
+ * Event observers for local_metasync.
+ *
+ * @package    local_metasync
+ * @copyright  2014 Willy Lee (wlee@carleton.edu)
+ * @copyright  2014 Paul Holden (pholden@greenhead.ac.uk)
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class observers {
 
     /**

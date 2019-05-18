@@ -27,6 +27,14 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
+/**
+ * Unit tests for the local_metasync plugin.
+ *
+ * @package    local_metasync
+ * @category   test
+ * @copyright  2018 Lafayette College ITS
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class local_metasync_groupsync_testcase extends advanced_testcase {
     public function test_groupsync() {
         global $DB;
@@ -104,6 +112,9 @@ class local_metasync_groupsync_testcase extends advanced_testcase {
         $this->assertEquals(7, count(groups_get_members($parentgroup2id)));
     }
 
+    /**
+     * Enable course meta links for the duration of the test.
+     */
     protected function enable_enrol_meta() {
         $enabled = enrol_get_plugins(true);
         $enabled['meta'] = true;

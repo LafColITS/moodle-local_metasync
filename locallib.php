@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Local helper functions.
+ *
  * @package    local_metasync
  * @copyright  2014 Willy Lee (wlee@carleton.edu)
  * @copyright  2014 Paul Holden (pholden@greenhead.ac.uk)

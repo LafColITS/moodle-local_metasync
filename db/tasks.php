@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Task definition for local_metasync.
+ *
  * @package   local_metasync
  * @category  task
  * @copyright 2018 Lafayette College ITS

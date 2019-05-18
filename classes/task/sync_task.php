@@ -18,7 +18,7 @@
  * On-demand sync for meta course groups.
  *
  * @package    local_metasync
- * @category   test
+ * @category   task
  * @copyright  2018 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,11 +27,27 @@ namespace local_metasync\task;
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * On-demand sync for meta course groups.
+ *
+ * @package    local_metasync
+ * @category   task
+ * @copyright  2018 Lafayette College ITS
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class sync_task extends \core\task\scheduled_task {
+    /**
+     * Get the name of the task.
+     *
+     * @return string The name of the task
+     */
     public function get_name() {
         return get_string('synctask', 'local_metasync');
     }
 
+    /**
+     * Execute the sync task.
+     */
     public function execute() {
         $trace = new \text_progress_trace();
         local_metasync_sync($trace);
