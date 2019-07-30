@@ -7,7 +7,7 @@ Metasync creates and maintains groups in metacourses that reflect the enrollment
 
 Requirements
 ------------
-- Moodle 3.4 (build 2017111300 or later)
+- Moodle 3.5 (build 2018051700 or later)
 
 Installation
 ------------
