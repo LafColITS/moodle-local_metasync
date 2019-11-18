@@ -1,7 +1,7 @@
 Meta-course synchronization to groups
 =========================================
 
-[![Build Status](https://api.travis-ci.org/LafColITS/moodle-local_metasync.png)](https://api.travis-ci.org/LafColITS/moodle-local_metasync)
+[![Build Status](https://travis-ci.org/LafColITS/moodle-local_metasync.svg?branch=master)](https://travis-ci.org/LafColITS/moodle-local_metasync)
 
 Metasync creates and maintains groups in metacourses that reflect the enrollment of the linked courses.
 
